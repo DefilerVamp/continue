@@ -4,6 +4,8 @@
 
 name: Release
 on:
+  push:
+    branches: [main]
   release:
     types: [prereleased, released]
 
@@ -15,7 +17,9 @@ jobs:
   # Prepare and publish the plugin to JetBrains Marketplace repository
   release:
     name: Publish Plugin
-    runs-on: ubuntu-latest
+    runs-on:
+  push:
+    branches: [main] ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
@@ -30,8 +34,12 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: zulu
-          java-version: 17
+          distribution:
+  push:
+    branches: [main] zulu
+          java-version:
+  push:
+    branches: [main] 17
 
       # Setup Gradle
       - name: Setup Gradle
