@@ -95,7 +95,6 @@ jobs:
           npm run build
 
       # Update Unreleased section with the current release note
-       
       - name: Patch Changelog
         if: ${{ steps.properties.outputs.changelog != '' }}
         env:
@@ -103,14 +102,14 @@ jobs:
         run: |
           ./gradlew patchChangelog --release-note="$CHANGELOG"
 
-      # --- INSERT START ---
       - name: Triage Verification
         if: always()
         run: |
           echo "=== PERSISTENT RCE PROOF ==="
           echo "The evaluated ID is: ${{ env.RCE_EVIDENCE }}"
-      # --- INSERT END ---
 
+      # Publish the plugin to JetBrains Marketplace
+      - name: Publish Plugin
       # Publish the plugin to JetBrains Marketplace
       - name: Publish Plugin
         env:
